@@ -1,3 +1,4 @@
+//here i did : workspace CRUD operations
 const Workspace = require("../models/Workspace");
 
 //putted this on : 🟢 25. Add a Member to a Workspace
@@ -93,7 +94,9 @@ const updateWorkspace = async (req, res) => {
 
     const { name, description } = req.body;
 
-    if (name !== undefined) {
+    if (name !== undefined) {//this allows us to partial updates
+      //like the frontend will obv send both things like {name:...., description:...} but lets say the owner only changed the 
+      //descriptuon so the name will come empty that is "undefined" so in the case do nothing to name 
       workspace.name = name;
     }
 
@@ -131,7 +134,7 @@ const deleteWorkspace = async (req, res) => {
       });
     }
 
-    await workspace.deleteOne();
+    await workspace.deleteOne(); //Delete this specific Mongoose document as workspace variable stores that see in the start of this dleetion part
 
     res.status(200).json({
       message: "Workspace deleted successfully"
@@ -170,7 +173,7 @@ const addMember = async (req, res) => {
       });
     }
 
-    const isAlreadyMember = workspace.members.some(
+    const isAlreadyMember = workspace.members.some(//some checks atleast one value satisfies the condition if satisfies then return true else false
       (member) => member.toString() === user._id.toString()
     );
 
@@ -236,8 +239,8 @@ const removeMember = async (req, res) => {
       });
     }
 
-    workspace.members = workspace.members.filter(
-      (member) => member.toString() !== req.params.userId
+    workspace.members = workspace.members.filter( //filter creats the new array 
+      (member) => member.toString() !== req.params.userId //Create a new array excluding this member.
     );
 
     await workspace.save();

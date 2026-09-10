@@ -1,6 +1,6 @@
 const Column = require("../models/Column");
-const Board = require("../models/Board");
-const Workspace = require("../models/Workspace");
+const Board = require("../models/Board");//ye column kon se board ka hai
+const Workspace = require("../models/Workspace");//ye column kon se board ka hai vo konse workspace ka hai
 
 const createColumn = async (req, res) => {
   try {

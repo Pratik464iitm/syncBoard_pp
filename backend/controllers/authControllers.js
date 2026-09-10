@@ -67,7 +67,7 @@ const loginUser = async (req, res) => {
 
     // 5. Generate JWT
     const token = jwt.sign(
-      { id: user._id },
+      { id: user._id },//payload
       process.env.JWT_SECRET,
       { expiresIn: "7d" }
     );

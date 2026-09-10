@@ -1,12 +1,14 @@
-const Board = require("../models/Board");
-const Workspace = require("../models/Workspace");
+const Board = require("../models/Board"); //for the CRUD operations 
+const Workspace = require("../models/Workspace");//for authorization as kon se workspace ke boards hai like
+//obv we can do the operations to the board of a particular workspace right so yeah 
+//*******like Can this user access this board? it can if its the member or owner of iska workspace right
 
 const createBoard = async (req, res) => {
   try {
     const { name, description } = req.body;
 
     const workspace = await Workspace.findById(
-      req.params.workspaceId
+      req.params.workspaceId //fro workspaceId see the route.js usme see the route create there it is 
     );
 
     if (!workspace) {

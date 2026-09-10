@@ -1,7 +1,8 @@
 require("dotenv").config();
 
-const express = require("express");
-const cors = require("cors");
+const express = require("express"); 
+const cors = require("cors");//frontedn and baked may run on diff origins and browser dont allow certain origins 
+//so this cors middleware helps to connect forntend and backend and work even being on diff origins
 
 const connectDB = require("./config/db");
 
@@ -24,9 +25,10 @@ connectDB();
 
 // Middleware
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); //frontend se info comes in json so , this parses it and makes it available as req.body
 
-app.use("/api/auth", authRouters);
+// Registering Authentication Routes
+app.use("/api/auth", authRouters);//means all paths defined in suthRouters.js so all will reciebe the base path as : /api/auth
 
 app.use("/api/workspaces", workspaceRoutes);
 
