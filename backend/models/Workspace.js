@@ -12,7 +12,7 @@ const workspaceSchema = new mongoose.Schema(
       default: ""
     },
 
-    owner: {
+    owner: { //The owner stores the ID of the user who owns the workspace.
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true
